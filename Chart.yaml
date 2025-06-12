@@ -1,5 +1,5 @@
 apiVersion: v2
-name: generic-chart
+name: helm-test
 description: Chart générique pour tests de couverture OpenShift
 type: application
 version: 0.1.0
