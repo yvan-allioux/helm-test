@@ -30,3 +30,5 @@ postgresql:
   enabled: false
 redis:
   enabled: false
+testConnection:
+  enabled: false
