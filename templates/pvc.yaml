@@ -1,5 +1,5 @@
 {{- range $name, $comp := .Values.components }}
-{{- if $comp.pvc.storage }}
+{{- if and $comp.pvc $comp.pvc.storage }}
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
