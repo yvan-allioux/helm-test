@@ -1,5 +1,5 @@
 {{- range $name, $comp := .Values.components }}
-{{- if and $comp.route $comp.route.host ( .Capabilities.APIVersions.Has "route.openshift.io/v1" ) }}
+{{- if and $comp.route $comp.route.host }}
 apiVersion: route.openshift.io/v1
 kind: Route
 metadata:
