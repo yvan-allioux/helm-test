@@ -1,4 +1,5 @@
 {{- range $name, $comp := .Values.components }}
+{{- if $comp.service }}
 apiVersion: v1
 kind: Service
 metadata:
