@@ -1,5 +1,5 @@
 {{- range $name, $comp := .Values.components }}
-{{- if $comp.statefulset.enabled }}
+{{- if .Values.components.$comp.statefulset.enabled }}
 apiVersion: apps/v1
 kind: StatefulSet
 metadata:
