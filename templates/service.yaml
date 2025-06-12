@@ -1,0 +1,13 @@
+{{- range $name, $comp := .Values.components }}
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ $name }}-svc
+spec:
+  type: {{ $comp.service.type | default "ClusterIP" }}
+  selector:
+    app: {{ $name }}
+  ports:
+    - port: {{ $comp.service.port | default 80 }}
+      targetPort: 80
+{{- end }}

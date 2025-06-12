@@ -1,0 +1,29 @@
+{{- if .Values.cronjob.enabled }}
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: toggle-configmap-every-hour
+spec:
+  schedule: "0 * * * *"
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          serviceAccountName: default
+          containers:
+          - name: kubectl
+            image: bitnami/kubectl:latest
+            command:
+            - /bin/sh
+            - -c
+            - |
+              HOUR=$(date +%H)
+              if [ $((HOUR % 2)) -eq 0 ]; then
+                kubectl create configmap test-cronjob-cm --from-literal=timestamp=$(date) || true
+                echo "ConfigMap créé"
+              else
+                kubectl delete configmap test-cronjob-cm --ignore-not-found
+                echo "ConfigMap supprimé"
+              fi
+          restartPolicy: OnFailure
+{{- end }}

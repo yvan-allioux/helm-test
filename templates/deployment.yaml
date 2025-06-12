@@ -1,0 +1,22 @@
+{{- range $name, $comp := .Values.components }}
+{{- if $comp.deployment.enabled }}
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ $name }}-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: {{ $name }}
+  template:
+    metadata:
+      labels:
+        app: {{ $name }}
+    spec:
+      containers:
+        - name: {{ $name }}
+          image: {{ $comp.deployment.image }}
+          resources: {{- toYaml $comp.deployment.resources | nindent 12 }}
+{{- end }}
+{{- end }}

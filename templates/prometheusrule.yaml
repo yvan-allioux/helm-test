@@ -1,0 +1,8 @@
+{{- range .Values.components.monitoring.prometheusrules }}
+apiVersion: monitoring.coreos.com/v1
+kind: PrometheusRule
+metadata:
+  name: {{ .name }}
+spec:
+  groups: {{ toYaml .groups | nindent 4 }}
+{{- end }}

@@ -1,0 +1,32 @@
+components:
+  frontend:
+    deployment:
+      enabled: true
+      image: nginx:latest
+      resources: {}
+    service:
+      type: ClusterIP
+      port: 80
+    route:
+      host: app.example.com
+  backend:
+    statefulset:
+      enabled: true
+      image: busybox
+      replicas: 1
+    pvc:
+      storage: 10Gi
+  monitoring:
+    servicemonitor: true
+    prometheusrules: []
+networkPolicies:
+  denyAll:
+    enabled: false
+cronjob:
+  enabled: true
+daemonset:
+  enabled: true
+postgresql:
+  enabled: false
+redis:
+  enabled: false

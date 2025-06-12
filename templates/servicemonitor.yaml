@@ -1,0 +1,12 @@
+{{- if .Values.components.monitoring.servicemonitor }}
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: generic-servicemonitor
+spec:
+  selector:
+    matchLabels:
+      app: frontend
+  endpoints:
+    - port: http
+{{- end }}

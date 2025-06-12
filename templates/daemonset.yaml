@@ -1,0 +1,19 @@
+{{- if .Values.daemonset.enabled }}
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: print-node-name
+spec:
+  selector:
+    matchLabels:
+      app: print-node-name
+  template:
+    metadata:
+      labels:
+        app: print-node-name
+    spec:
+      containers:
+      - name: print-node-name
+        image: busybox
+        command: ["sh", "-c", "while true; do echo Node: $(cat /etc/hostname); sleep 30; done"]
+{{- end }}
