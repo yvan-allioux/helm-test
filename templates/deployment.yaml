@@ -1,5 +1,5 @@
 {{- range $name, $comp := .Values.components }}
-{{- if $comp.deployment.enabled }}
+{{- if and $comp.deployment $comp.deployment.enabled }}
 apiVersion: apps/v1
 kind: Deployment
 metadata:
