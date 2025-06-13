@@ -17,6 +17,7 @@ spec:
       containers:
         - name: {{ $name }}
           image: {{ $comp.deployment.image }}
+          pullPolicy: {{ $comp.deployment.pullPolicy | default "IfNotPresent" }}
           resources: {{- toYaml $comp.deployment.resources | nindent 12 }}
 {{- end }}
 {{- end }}

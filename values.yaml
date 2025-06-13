@@ -3,6 +3,7 @@ components:
     deployment:
       enabled: true
       image: nginx:latest
+      pullPolicy: IfNotPresent
       resources: {}
     service:
       type: ClusterIP
