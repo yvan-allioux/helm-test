@@ -15,3 +15,4 @@ spec:
   storageClassName: {{ .Values.defaultStorageClass | default "standard" }}
 {{- end }}
 {{- end }}
+{{- end }}
