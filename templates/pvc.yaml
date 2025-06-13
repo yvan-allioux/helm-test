@@ -9,5 +9,9 @@ spec:
   resources:
     requests:
       storage: {{ $comp.pvc.storage }}
+{{- if $comp.pvc.storageClassName }}
+  storageClassName: {{ $comp.pvc.storageClassName }}
+{{- else }}
+  storageClassName: {{ .Values.defaultStorageClass | default "standard" }}
 {{- end }}
 {{- end }}

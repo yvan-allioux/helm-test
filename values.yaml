@@ -15,7 +15,8 @@ components:
       image: busybox
       replicas: 1
     pvc:
-      storage: 10Gi
+      storage: 5Gi
+      storageClassName: standard
   monitoring:
     servicemonitor: true
     prometheusrules: []
